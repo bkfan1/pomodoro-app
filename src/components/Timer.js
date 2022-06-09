@@ -1,8 +1,14 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { TimerContext } from "../context/TimerContext";
 
 export default function Timer() {
-  const {handleSkip, remainingMinutes, remainingSeconds, playTimer, handlePlayTimer} = useContext(TimerContext);
+  const {
+    handleSkip,
+    remainingMinutes,
+    remainingSeconds,
+    playTimer,
+    handlePlayTimer,
+  } = useContext(TimerContext);
 
   return (
     <>
@@ -27,6 +33,7 @@ export default function Timer() {
         </figure>
         <menu className="flex gap-3">
           <button
+            title={playTimer ? "Pause" : "Resume"}
             onClick={handlePlayTimer}
             className="flex items-center justify-center w-12 h-12 p-3 text-3xl bg-yellow-400 text-red-700 rounded-full"
           >
@@ -37,7 +44,11 @@ export default function Timer() {
             />
           </button>
 
-          <button onClick={handleSkip} className="flex items-center justify-center w-12 h-12 p-3 text-2xl bg-yellow-400 text-red-700 rounded-full">
+          <button
+            title={`Skip`}
+            onClick={handleSkip}
+            className="flex items-center justify-center w-12 h-12 p-3 text-2xl bg-yellow-400 text-red-700 rounded-full"
+          >
             <i className={"bi bi-skip-forward-fill"} />
           </button>
         </menu>
