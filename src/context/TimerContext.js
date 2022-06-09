@@ -9,33 +9,26 @@ export const TimerProvider = ({ children }) => {
   const [remainingMinutes, setRemainingMinutes] = useState(25);
   const [remainingSeconds, setRemainingSeconds] = useState(0);
   const [completedPomodoro, setCompletedPomodoro] = useState(false);
-  const [skipped,setSkipped] = useState(false);
 
   const [playTimer, setPlayTimer] = useState(false);
 
-  const handleSkip = ()=>{
-
-    setSkipped(true);
-
-    if(playTimer){
-        setPlayTimer(false);
+  const handleSkip = () => {
+    if (playTimer) {
+      setPlayTimer(false);
     }
 
     setCompletedPomodoro(!completedPomodoro);
 
-    if(!completedPomodoro){
-        setRemainingMinutes(restingMinutes);
-        setRemainingSeconds(0);
+    if (!completedPomodoro) {
+      setRemainingMinutes(restingMinutes);
+      setRemainingSeconds(0);
     }
 
-    if(completedPomodoro){
-        setRemainingMinutes(workMinutes);
-        setRemainingSeconds(0);
+    if (completedPomodoro) {
+      setRemainingMinutes(workMinutes);
+      setRemainingSeconds(0);
     }
-
-
-
-  }
+  };
 
   const handlePlayTimer = () => {
     setPlayTimer(!playTimer);
@@ -80,29 +73,26 @@ export const TimerProvider = ({ children }) => {
   });
 
   return (
-      <>
-    <TimerContext.Provider
-    value={{
-        workMinutes,
-        setWorkMinutes,
-        restingMinutes,
-        setRestingMinutes,
+    <>
+      <TimerContext.Provider
+        value={{
+          workMinutes,
+          setWorkMinutes,
+          restingMinutes,
+          setRestingMinutes,
 
-        remainingMinutes,
-        remainingSeconds,
+          remainingMinutes,
+          remainingSeconds,
 
-        playTimer,
-        completedPomodoro,
+          playTimer,
+          completedPomodoro,
 
-        handlePlayTimer,
-        handleSkip,
-        skipped,
-        setSkipped
-    }}
-
-    >
-      {children}
-    </TimerContext.Provider>
+          handlePlayTimer,
+          handleSkip,
+        }}
+      >
+        {children}
+      </TimerContext.Provider>
     </>
   );
 };
