@@ -6,35 +6,24 @@ import HeaderMenu from "./HeaderMenu";
 import Timer from "./Timer";
 
 export default function PomodoroApp() {
-  const { remainingMinutes, remainingSeconds, playTimer, completedPomodoro, skipped,setSkipped } =
+  const { remainingMinutes, remainingSeconds, playTimer, completedPomodoro } =
     useContext(TimerContext);
   const { audioTag } = useContext(SoundEffectsContext);
   const { theme, currentModeText } = useContext(ThemeContext);
 
+  const timeString = `${
+    remainingMinutes < 10 ? `0${remainingMinutes}` : remainingMinutes
+  }:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}`;
+
   useEffect(() => {
-    const timeString = `${
-      remainingMinutes < 10 ? `0${remainingMinutes}` : remainingMinutes
-    }:${remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}`;
+    if (playTimer) {
+      if (!completedPomodoro) document.title = `Work - ${timeString} left`;
 
-    if (playTimer && !completedPomodoro) {
-      document.title = `Work - ${timeString} left`;
+      if (completedPomodoro) document.title = `Break - ${timeString} left`;
+    } else {
+      document.title = `🍅 Pomodoro App - Created by @bkfan1`;
     }
-
-    if (playTimer && completedPomodoro) {
-      document.title = `Break - ${timeString} left`;
-    }
-
-    if (!playTimer && (remainingMinutes > 0 && remainingSeconds >= 0)) {
-      if (completedPomodoro) {
-        document.title = "Waiting for resume break...";
-      }
-      if (!completedPomodoro) {
-        document.title = "Waiting for resume work...";
-      }
-    }
-
-
-  }, [remainingMinutes, remainingSeconds, playTimer, completedPomodoro,skipped]);
+  }, [playTimer, timeString, completedPomodoro]);
 
   return (
     <>
