@@ -9,11 +9,10 @@ function App() {
       <TimerProvider>
         <ThemeProvider>
           <SoundEffectsProvider>
-          <div className="App">
-            <PomodoroApp />
-          </div>
+            <div className="App">
+              <PomodoroApp />
+            </div>
           </SoundEffectsProvider>
-          
         </ThemeProvider>
       </TimerProvider>
     </>
