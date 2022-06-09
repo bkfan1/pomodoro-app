@@ -10,9 +10,9 @@ export const SoundEffectsProvider = ({ children }) => {
 
   useEffect(() => {
     if (remainingMinutes === 0 && remainingSeconds === 0) {
-     if(!muteSoundEffects){
+      if (!muteSoundEffects) {
         audioTag.current.play();
-     }
+      }
     }
   }, [remainingMinutes, remainingSeconds, muteSoundEffects]);
 
