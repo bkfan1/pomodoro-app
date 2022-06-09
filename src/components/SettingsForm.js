@@ -5,7 +5,8 @@ import { TimerContext } from "../context/TimerContext";
 export default function SettingsForm() {
   const { workMinutes, setWorkMinutes, restingMinutes, setRestingMinutes } =
     useContext(TimerContext);
-    const {muteSoundEffects, setMuteSoundEffects} = useContext(SoundEffectsContext);
+  const { muteSoundEffects, setMuteSoundEffects } =
+    useContext(SoundEffectsContext);
 
   return (
     <>
@@ -35,12 +36,21 @@ export default function SettingsForm() {
         </div>
 
         <div className="">
-          <input type="checkbox" className="mr-2" checked={muteSoundEffects} onChange={(e)=>setMuteSoundEffects(!muteSoundEffects)} />
+          <input
+            type="checkbox"
+            className="mr-2"
+            checked={muteSoundEffects}
+            onChange={(e) => setMuteSoundEffects(!muteSoundEffects)}
+          />
           <label>Mute sound effects</label>
         </div>
 
         <p className="p-2 text-center bg-gray-800 text-white rounded">
           Slide inputs to change values
+        </p>
+        <p className="text-sm">
+          <i className="bi bi-info-circle" /> Every change will applied after
+          the current session is skipped or finished.
         </p>
       </form>
     </>
