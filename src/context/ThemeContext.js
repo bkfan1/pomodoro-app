@@ -10,22 +10,20 @@ export const ThemeProvider = ({ children }) => {
   const [currentModeText, setCurrentModeText] = useState("");
 
   useEffect(() => {
-
-    if(!playTimer){
-        setTheme('bg-white text-black');
-        setCurrentModeText('Get ready')
+    if (!playTimer) {
+      setTheme("bg-white text-black");
+      setCurrentModeText("Get ready");
     }
 
-    if(playTimer && !completedPomodoro){
-        setTheme('bg-red-500 text-white')
-        setCurrentModeText('Work')
+    if (playTimer && !completedPomodoro) {
+      setTheme("bg-red-500 text-white");
+      setCurrentModeText("Work");
     }
 
-    if(playTimer && completedPomodoro){
-        setTheme('bg-gray-700 text-white')
-        setCurrentModeText('Break')
+    if (playTimer && completedPomodoro) {
+      setTheme("bg-gray-700 text-white");
+      setCurrentModeText("Break");
     }
-
   }, [playTimer, completedPomodoro]);
 
   return (
