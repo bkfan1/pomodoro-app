@@ -56,6 +56,7 @@ export const TimerProvider = ({ children }) => {
           clearInterval(interval);
           setPlayTimer(false);
           setCompletedPomodoro(true);
+          handleSkip();
         } else {
           substractTime(
             remainingMinutes,
